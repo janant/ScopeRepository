@@ -4,7 +4,8 @@ import { StyleSheet, Text, View, TouchableHighlight, Button } from 'react-native
 export default class App extends React.Component {
 
   state = {
-      joke: "(Groan-worthy jokes will promptly arrive here)"
+      joke: "(Groan-worthy jokes will promptly arrive here)",
+      currentIndex: 0
   }
 
   _generateJoke = () => {
@@ -40,9 +41,10 @@ export default class App extends React.Component {
           title="Tap here for another joke"
           onPress={() => {
             var jokes = ['USC Dean background checks #staywoke', 'cs 201 instructions', 'sam darnold'];
-            var rand = Math.floor((Math.random() * 3));
+            var currentJoke = jokes[this.state.currentIndex];
+            this.state.currentIndex = (this.state.currentIndex + 1) % 3;
             this.setState({
-              joke: jokes[rand]
+              joke: currentJoke
             });
           }}
           />
